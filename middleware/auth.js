@@ -1,3 +1,4 @@
+// auth.js
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 
@@ -16,4 +17,4 @@ function authenticateToken(req, res, next) {
   }
 }
 
-module.exports = { authenticateToken };
+module.exports = authenticateToken;

@@ -2,7 +2,7 @@ const multer = require('multer');
 const fs = require('fs');
 
 // Ensure the uploads directory exists
-const uploadDir = './../uploads';
+const uploadDir = 'uploads';
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
