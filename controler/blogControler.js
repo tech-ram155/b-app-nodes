@@ -9,8 +9,8 @@ exports.getAllBlogs = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-
 };
+
 
 exports.getBlogById = async (req, res) => {
   try {

@@ -9,8 +9,8 @@ router.route('/')
 
 router.route('/:id')
   .get(blogController.getBlogById)
-  .patch(authenticateToken,upload.single('featuredImage'), blogController.updateBlog)
-  .delete(authenticateToken,blogController.deleteBlog);
+  .patch(upload.single('featuredImage'), blogController.updateBlog)
+  .delete(blogController.deleteBlog);
 
 module.exports = router;
  

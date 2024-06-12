@@ -16,10 +16,12 @@ app.use('/uploads', express.static('uploads'));
 // Import routers
 const blogRouter = require('./router/blogRouter');
 const userRouter = require('./router/userRouter');
+const emailRouter = require('./router/emailRouter');
 
 // Use routers
 app.use('/api/v1/blogs', blogRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/users/contact', emailRouter);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
