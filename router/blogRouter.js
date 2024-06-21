@@ -5,12 +5,12 @@ const blogController = require('../controler/blogControler');
 const upload = require('../middleware/upload'); 
 router.route('/')
   .get(blogController.getAllBlogs)
-  .post(upload.single('featuredImage'), blogController.createBlog);
+  .post(authenticateToken,upload.single('featuredImage'), blogController.createBlog);
 
 router.route('/:id')
   .get(blogController.getBlogById)
-  .patch(upload.single('featuredImage'), blogController.updateBlog)
-  .delete(blogController.deleteBlog);
+  .patch(authenticateToken,upload.single('featuredImage'), blogController.updateBlog)
+  .delete(authenticateToken,blogController.deleteBlog);
 
 module.exports = router;
  

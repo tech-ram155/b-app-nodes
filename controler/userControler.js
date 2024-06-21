@@ -22,8 +22,8 @@ exports.login = async (req, res) => {
     }
 
     // If username and password are valid, generate a JWT token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
+    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '3h' });
+       //console.log(token);
     // Remove the password field from the user object before sending the response
     const userResponse = user.toObject();
     delete userResponse.password;
