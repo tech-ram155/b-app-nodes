@@ -3,14 +3,29 @@ const Blog = require('../model/blogModel');
 
 exports.getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find();
-    res.status(200).json(blogs);
+    const searchQuery = req.query.search;
+    let blogs;
     
+    if (searchQuery) {
+      // If there's a search query, filter blogs by title or content
+      const regex = new RegExp(searchQuery, 'i'); // 'i' for case-insensitive
+      blogs = await Blog.find({
+        $or: [
+          { title: regex },
+          { content: regex }
+        ],
+        status: 'Published' // Only include published blogs
+      });
+    } else {
+      // Otherwise, return all published blogs
+      blogs = await Blog.find();
+    }
+
+    res.status(200).json(blogs);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
-
 
 exports.getBlogById = async (req, res) => {
   try {
